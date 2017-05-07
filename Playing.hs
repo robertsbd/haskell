@@ -18,4 +18,9 @@ module FirstScript where
     example :: Integer
     example = double (size - square(2*2))
 
-    
+    exOr :: Bool -> Bool -> Bool
+    exOr x y = x /= y
+
+    myNot :: Bool -> Bool
+    myNot True = False
+    myNot False = True
