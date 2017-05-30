@@ -32,3 +32,10 @@ module SevenDaysDay1 where
 
     colours :: [([Char], [Char], [Char], [Char], [Char])]
     colours = [ ("Alabama = " ++ al, "Mississippi = " ++ mi, "Georgia = " ++ ge, "Tennessee = " ++ te, "Florida = " ++ fl) | al <- cols, mi <- cols, ge <- cols, te <- cols, fl <- cols, mi /= te, mi /= al, al /= te, al /= ge, al /= fl, ge /= fl, ge /= te]
+
+
+    cir :: [Integer]
+    cir = [1 .. 9]
+
+    solver :: [(Integer, Integer, Integer, Integer)]
+    solver = [(a, b, c, d) | a <- cir, b <- cir, c <- cir, d <- cir, 18 == a + b + 3, 10 == 3 + b + c, 12 == 3 + c + d, 20 == 3 + d + a]
