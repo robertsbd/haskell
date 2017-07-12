@@ -1,0 +1,106 @@
+Hours of hacking await!
+If I break, you can:
+  1. Restart:           M-x haskell-process-restart
+  2. Configure logging: C-h v haskell-process-log (useful for debugging)
+  3. General config:    M-x customize-mode
+  4. Hide these tips:   C-h v haskell-process-show-debug-tips
+Changed directory: /Users/benjamin/Documents/Programming/haskell/
+λ> leaf = Leaf 1
+λ> leaf
+Leaf 1
+λ> Leaf value = leaf
+λ> value
+1
+λ> Children[Leaf 1, Leaf 2]
+Children [Leaf 1,Leaf 2]
+λ> test
+3
+λ> let tree = Children[Leaf 1, Children [Leaf 2, Leaf 3]]
+λ> tree
+Children [Leaf 1,Children [Leaf 2,Leaf 3]]
+λ> let (Children ch) = tree
+λ> ch
+[Leaf 1,Children [Leaf 2,Leaf 3]]
+λ> let (fst:tail) = ch
+λ> ch
+[Leaf 1,Children [Leaf 2,Leaf 3]]
+λ> fst
+Leaf 1
+λ> tail
+[Children [Leaf 2,Leaf 3]]
+λ> depth (Leaf _) = 1
+λ> depth tree
+*** Exception: <interactive>:39:1-18: Non-exhaustive patterns in function depth
+
+λ> tree
+Children [Leaf 1,Children [Leaf 2,Leaf 3]]
+λ> ch
+[Leaf 1,Children [Leaf 2,Leaf 3]]
+λ> depth (Children c) = 1 + maximum (map depth c)
+λ> depth tree
+*** Exception: <interactive>:44:1-46: Non-exhaustive patterns in function depth
+
+λ> leaf = Leaf 1
+λ> leaf
+Leaf 1
+λ> depth leaf
+*** Exception: <interactive>:44:1-46: Non-exhaustive patterns in function depth
+
+λ> depth (leaf)
+*** Exception: <interactive>:44:1-46: Non-exhaustive patterns in function depth
+
+λ> depth leaf
+*** Exception: <interactive>:44:1-46: Non-exhaustive patterns in function depth
+
+λ> depth
+depth :: (Num a, Ord a) => Tree t -> a
+λ> myTree = Children [Leaf 1, Children [Leaf 2, Leaf 3]]
+λ> myTree
+Children [Leaf 1,Children [Leaf 2,Leaf 3]]
+λ> depth myTree
+3
+λ> let (Children ch) = myTree
+λ> ch
+[Leaf 1,Children [Leaf 2,Leaf 3]]
+λ> depth myTree
+3
+λ> ch
+[Leaf 1,Children [Leaf 2,Leaf 3]]
+λ> let (t2) = myTree
+λ> t2
+Children [Leaf 1,Children [Leaf 2,Leaf 3]]
+λ> let (Children[_, Children lowerLeaf]) = myTree
+λ> lowerLeaf
+[Leaf 2,Leaf 3]
+λ> (Children[_, xx]) = myTree
+λ> xx
+Children [Leaf 2,Leaf 3]
+λ> depth xx
+2
+λ> stagger 2
+4
+λ> crawl 1
+2
+λ> stagger 2
+4
+λ> crawl 1
+2
+λ> crawl 1
+2
+λ> stagger 2
+4
+λ> treasureMap 0
+5
+λ> letTreasureMap (0, 1)
+5
+λ> letTreasureMap (1, 1)
+6
+λ> letTreasureMap (1, 2)
+6
+λ> letTreasureMap 1
+6
+λ> drunkenStep2D (1, 1)
+(2,2)
+λ> drunkenStep2D (2, 3)
+(3,4)
+λ> map [x | x <- [1 ..10]]
